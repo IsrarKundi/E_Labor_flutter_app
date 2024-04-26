@@ -1,3 +1,4 @@
+import 'package:e_labor/Search.dart';
 import 'package:e_labor/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For system chrome changes (optional)
@@ -27,11 +28,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Define named routes for navigation
-      initialRoute: '/', // Set the initial route (usually login)
+      initialRoute: '/search', // Set the initial route (usually login)
       routes: {
         '/': (context) => const Login(), // Login screen
         '/register': (context) => const Registration(), // Registration screen
         '/home': (context) => const Home(),
+        '/search': (context) => const Search(),
       },
     );
   }
