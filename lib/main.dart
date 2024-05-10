@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Define named routes for navigation
-      initialRoute: '/search', // Set the initial route (usually login)
+      initialRoute: '/home', // Set the initial route (usually login)
       routes: {
         '/': (context) => const Login(), // Login screen
         '/register': (context) => const Registration(), // Registration screen
