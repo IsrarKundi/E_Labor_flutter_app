@@ -12,13 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0; // Keeps track of the selected index
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   var height, width;
   String searchQuery = '';
@@ -48,7 +42,7 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.only(top: 48),
                   child: Center(
                     child:
                       Image.asset('images/logo.png', height: 33,),
@@ -213,37 +207,7 @@ class _HomeState extends State<Home> {
 
 
 
-      bottomNavigationBar: IconTheme(
-        data: IconThemeData(
-          color: Colors.grey, // Color for unselected icons
-          size: 38.0, // Adjust size as needed
-        ),
-        child: BottomNavigationBar(
-          unselectedItemColor: Colors.grey.withOpacity(0.9),
 
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 26,),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat, size: 26),
-              label: 'Chat',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications, size: 26),
-              label: 'Notification',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle, size: 26),
-              label: 'Profile',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Color(0xfff67322),
-          onTap: _onItemTapped,
-        ),
-      ),
     );
   }
 }

@@ -14,7 +14,9 @@ class _RegistrationState extends State<Registration> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  // Define a focus node for each text field
+  // Define a focus node for each password field
+  bool _isPasswordObscure = true;
+  bool _isConfirmPasswordObscure = true;
 
 
   @override
@@ -56,9 +58,17 @@ class _RegistrationState extends State<Registration> {
               SizedBox(height: 20),
               buildTextField('Email', emailController, ),
               SizedBox(height: 20),
-              buildTextField('Password', passwordController, obscureText: true, ),
+              buildTextField('Password', passwordController, obscureText: _isPasswordObscure, onPressed: () {
+                setState(() {
+                  _isPasswordObscure = !_isPasswordObscure;
+                });
+              }),
               SizedBox(height: 20),
-              buildTextField('Confirm Password', confirmPasswordController, obscureText: true, ),
+              buildTextField('Confirm Password', confirmPasswordController, obscureText: _isConfirmPasswordObscure, onPressed: () {
+                setState(() {
+                  _isConfirmPasswordObscure = !_isConfirmPasswordObscure;
+                });
+              }),
               SizedBox(height: 28),
               ElevatedButton(
                 onPressed: () {
@@ -114,9 +124,7 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-  Widget buildTextField(String label, TextEditingController controller, {bool obscureText = false, FocusNode? focusNode}) {
-    bool _isObscure = obscureText;
-
+  Widget buildTextField(String label, TextEditingController controller, {bool obscureText = false, Function()? onPressed}) {
     return Container(
       child: Material(
         color: Color(0xfff2f2f2),
@@ -124,20 +132,16 @@ class _RegistrationState extends State<Registration> {
         borderRadius: BorderRadius.circular(10),
         child: TextFormField(
           controller: controller,
-          obscureText: _isObscure,
-          focusNode: focusNode,
+          obscureText: obscureText,
           decoration: InputDecoration(
             labelText: label,
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 9),
             suffixIcon: obscureText
                 ? IconButton(
-              onPressed: () {
-                // Toggle password visibility
-                _isObscure = !_isObscure;
-              },
+              onPressed: onPressed,
               icon: Icon(
-                _isObscure ? Icons.visibility_off : Icons.visibility,
+                obscureText ? Icons.visibility_off : Icons.visibility,
                 color: Colors.grey,
               ),
             )
