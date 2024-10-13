@@ -1,8 +1,10 @@
+import 'package:e_labor/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For system chrome changes (optional)
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 // Import your screen files here
-import 'home_screen.dart';
+import 'home/views/home_screen.dart';
 import 'chat_screen.dart';
 import 'notification_screen.dart' as custom_notification;
 import 'profile_screen.dart';
@@ -20,14 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Your App Name', // Replace with your app title
       theme: ThemeData(
         // Your app's theme customizations
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      initialRoute: AppRoutes.AUTHENTICATION,
+      getPages: AppRoutes.routes,
     );
   }
 }
@@ -43,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   static final List<Widget> _screens = <Widget>[
-    Home(),
+    HomeScreen(),
     ChatScreen(),
     custom_notification.NotificationScreen(),
     Profile(),
